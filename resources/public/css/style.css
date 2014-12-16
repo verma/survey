@@ -1,0 +1,92 @@
+/* some style */
+
+.page {
+    font-family: 'Lato', 'sans-serif';
+    padding-bottom: 50px;
+}
+
+.page h1 {
+    font-family: 'Montserrat', 'sans-serif';
+    text-align: center;
+    font-size: 2.5em;
+    color: #305B86;
+}
+
+.page .content {
+    text-align: center;
+    color: #555;
+    font-size: 1.5em;
+    width: 800px;
+    line-height: 1.6em;
+    margin: auto;
+}
+
+.page form input {
+    padding: 20px;
+}
+
+.page .options {
+    width: 800px;
+    margin: auto;
+    margin-top: 5em;
+}
+
+.page .option {
+    display: block;
+    padding: 15px;
+    font-size: 1.2em;
+    border: 1px solid white;
+    background-color: #eee;
+}
+
+.page a {
+    text-decoration: none;
+    color: #333;
+}
+
+.page a:hover {
+    color: #fff;
+    background-color: #999;
+}
+
+.page .options .selected {
+    background-color: #B96030;
+    color: white;
+}
+
+.page .multiple .selected:after {
+    content: '\2713';
+    float: right;
+}
+
+.page .multiple .move-on {
+    margin-top: 20px;
+}
+
+.page .multiple .move-on:after {
+    content: "\279c";
+    float: right;
+}
+
+.page .single a:hover:after{
+    content: "\279c";
+    float: right;
+}
+
+.page h4 {
+    text-align: center;
+    font-style: italic;
+    color: #ccc;
+
+}
+
+.content a {
+    color: #1D4B87;
+    padding: 5px 10px;
+    background-color: transparent;
+}
+
+.content a:hover {
+    color: #1D4B87;
+    background-color: rgba(0, 0, 0, 0.05);
+}
