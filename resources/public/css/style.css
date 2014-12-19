@@ -80,6 +80,37 @@
 
 }
 
+.page .input-option {
+    width: 500px;
+    margin: auto;
+    padding: 20px;
+}
+
+.page .input-option input[type="text"] {
+    width: 100%;
+    font-size: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
+
+    border-bottom: 2px solid #333;
+}
+
+.page .input-option input[type="text"]:focus {
+    border-bottom: 2px solid #aaf;
+    box-shadow: none;
+    outline: 0;
+}
+
+.page .input-option .move-on {
+    margin-top: 20px;
+}
+
+.page .input-option .move-on:after {
+    content: "\279c";
+    float: right;
+}
+
 .content a {
     color: #1D4B87;
     padding: 5px 10px;

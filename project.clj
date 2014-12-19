@@ -10,6 +10,7 @@
                  [figwheel "0.1.7-SNAPSHOT"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [sablono "0.2.22"]
+                 [pani "0.0.3"]
                  [om "0.8.0-beta2"]]
 
   :plugins [[lein-cljsbuild "1.0.3"]
@@ -29,8 +30,8 @@
               :compiler {:output-to "www/survey.min.js"
                          :optimizations :advanced
                          :pretty-print false
-                         :preamble ["react/react.min.js"]
-                         :externs ["react/externs/react.js"]}}]}
+                         :preamble ["react/react.min.js" "public/js/firebase.js"]
+                         :externs ["public/js/firebase.js" "react/externs/react.js"]}}]}
   :figwheel {
              :http-server-root "public" ;; default and assumes "resources" 
              :server-port 3449 ;; default

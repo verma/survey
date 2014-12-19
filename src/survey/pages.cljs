@@ -27,15 +27,22 @@
    ["Hear me out!"
     (fn []
       [:div
-       [:p "This is a survey I am conducting for a fun project I want to build, so that it can help people like you.  People who are in need of top class talent.  Talent which is rare and hard to find!  I want to create a marketplace for them!"]
-       [:p {:style {:font-style :italic}} "\"Screw your idea man! shit! another one of those bullshit body-shopping websites where cheap shit is made and sold and everyone is trying to undercut each other? Fuck that shit I am out of here, btw thanks for wasting my time!!
-\""]
-       [:p "Now hold on one second.  I know what you are talking about and I am sure that I share your opinion, may be not as fervently!  Those sites are not very nice and please calm down, lets keep this civil."]])   
+       [:p "This is a survey I am conducting for a fun project I want to build, so that it can help people like you.  If you want to learn more about this idea, please check this:"]
+       [:a {:href "https://hackpad.com/MuchNice-JfJtwInPEnk" :target "_blank"} "MuchNice Document"]
+       [:p "You don't have to read that document to enjoy this survey."]])   
     :single-choice
-    ["Sure, I am sorry I lost it there a little bit..."]]
+    ["YES! I can't wait!"]]
+
+
+   ["Caffè Americano"
+    (fn []
+      [:div [:p {:style {:font-style :italic}} "There is a popular, but unconfirmed, belief that the name, Americano, has its origins in World War II when American G.I.s in Italy would dilute espresso with hot water to approximate the coffee to which they were accustomed."]
+       [:p {:style {:text-align :right}} "- Wikipedia"]])
+
+    :multi-choice []]
 
    ;; Page 4
-   ["Your rage is completely understandable"
+   ["Lets Begin!"
     "When looking for a new hire how would you say you feel?"
     :multi-choice
     ["Actually not bad at all!"
@@ -115,7 +122,7 @@
 
    ["Just a few more, I promise!"
     "How often do you need badass programmers?"
-    :multi-choice
+    :single-choice
     ["As often as I can find them"
      "Just to build MVP stuff quickly"
      "Just during few phases of our project's life-cycle"
@@ -133,8 +140,8 @@
      "I am not a cheap person"]]
 
 
-   ["If earth would stop rotating right now!"
-    "You would hurl out of your window at 800mph due east"
+   ["If earth would stop rotating right now"
+    "You would hurl out of your window at 800mph due east!"
     :multi-choice []]
 
 
@@ -143,10 +150,14 @@
       [:div
        [:p "That's why I wrote my own!"]
        [:a {:href "https://github.com/verma/survey"
-            :_target "blank"} "github.com/verma/survey"]
+            :target "_blank"} "github.com/verma/survey"]
        [:p "It's sucky but its written in Clojure so I win."]])
-    :single-choice ["Yes you did, indeed."]]
+    :single-choice ["Yes, indeed."]]
+
+   ["You just doubled your awesomeness! "
+    "In appreciation of you taking time to complete this survey, I would like to buy you a beer.  Please give me a BTC address and I will send 0.025 BTC your way (limited supply of course)!"
+    :input-field "A BTC Address"]
 
    ;; Last page
-   ["You are awesome!"
-    "Thanks for completing this survey and you are very welcome for the entertainment provided.  Of course you'll be judged on the options you chose."])) 
+   ["Thanks for being so awesome!"
+    "This world needs more people like you!  Thanks for completing this survey and you are very welcome for the entertainment provided.  Of course you'll be judged on the options you chose."])) 

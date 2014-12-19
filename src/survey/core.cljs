@@ -3,6 +3,7 @@
             [figwheel.client :as fw]
             [sablono.core :as html :refer-macros [html]]
             [om.core :as om :include-macros true]
+            [pani.cljs.core :as p]
             [cljs.core.async :as async :refer [<!]])
   (:require-macros [cljs.core.async.macros :refer [go go-loop]]))
 
@@ -46,15 +47,38 @@
          [:a.option {:href "javascript:"
                      :on-click #(async/put! c o)} o]))])))
 
-(defn- page [{:keys [c key title content multi-choice single-choice]}]
+(defn- input-field-option [{:keys [placeholder c]} owner]
+  (reify
+    om/IDidMount
+    (did-mount [_]
+      (.focus (om/get-node owner "input-box")))
+
+    om/IRender
+    (render [_]
+      (html
+       [:div.input-option
+        [:input {:placeholder placeholder
+                 :type "text"
+                 :ref "input-box"}]
+        [:a.option.move-on {:href "javascript:"
+                            :on-click #(async/put! c (.-value (om/get-node owner "input-box")))} "Move on"]]))))
+
+(defn- page [{:keys [c key title content input-field multi-choice single-choice]}]
   [:div.page {:class key}
    [:h1 title]
    [:div.content (if (ifn? content) (content) content)]
+   (when input-field
+     (om/build input-field-option {:placeholder input-field :c c} {:react-key (name key)}))
    (when multi-choice
      (om/build multi-choice-options {:options multi-choice :c c} {:react-key (name key)}))
    (when single-choice
      (om/build single-choice-options {:options single-choice :c c} {:react-key (name key)}))])
 
+
+(defn- submit-responses [res]
+  (println "submitting responses!" res)
+  (let [r (p/root "https://justasurvey.firebaseio.com/")]
+    (p/push! r :responses res)))
 
 
 (defn- main [app-state owner]
@@ -72,6 +96,12 @@
                  (println res)
                  (om/update-state! owner :slide-index inc)
                  (om/update-state! owner :responses #(conj % res))
+
+                 (when (= (om/get-state owner :slide-index)
+                          (-> all-pages count dec))
+                   (go
+                    (submit-responses (om/get-state owner :responses))))
+
                  (recur (<! c)))))
 
     om/IRenderState
@@ -80,11 +110,9 @@
             p (assoc p :c c)]
         (html (page p))))))
 
-(om/root main [(nth all-pages 14)] {:target (. js/document getElementById "main-area")})
+(om/root main all-pages {:target (. js/document getElementById "main-area")})
 
-(println all-pages)
-
-(fw/start {
+#_(fw/start {
   :on-jsload (fn []
                ;; (stop-and-start-my app)
                )})
